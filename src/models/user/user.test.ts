@@ -3,7 +3,7 @@ import { User } from './user'
 import { Room } from '../room/room'
 import { altay, furkan, cagatay } from './mock-users'
 
-describe('deneme', () => {
+describe('[user.ts]', () => {
   it('creates instance of User', () => {
     expect(cagatay instanceof User).toBe(true)
   })
