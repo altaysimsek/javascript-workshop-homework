@@ -22,6 +22,8 @@ describe('[user.ts]', () => {
   })
 
   it('getting instance of Room', () => {
+    const vega = new Room('Vega')
+    vega.join(altay)
     expect(altay.getRoom() instanceof Room).toBe(true)
   })
 })
