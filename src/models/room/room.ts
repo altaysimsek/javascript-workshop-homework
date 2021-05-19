@@ -1,12 +1,17 @@
 /* eslint-disable */
 import { User } from '../user/user'
 
+interface UserPoint{
+  name:string,
+  point: number
+}
 export class Room {
     roomName: string
     round: number = 1
     static rooms: Room[] = []
     members: User[] = []
-    currentRoundScore?: any = {}
+    
+    currentRoundScore: UserPoint[] = []
     overallScore?: any = {}
 
     constructor (roomName: string) {
@@ -37,7 +42,7 @@ export class Room {
         // add history of a currentRound to gameScore and resetting currentRound
         this.overallScore[this.round] = this.currentRoundScore
         this.round++
-        this.currentRoundScore = {}
+        this.currentRoundScore = []
         return true
       }
       return false
@@ -45,18 +50,15 @@ export class Room {
 
     // I changed 'smile' to 'react'
     react (user: User) {
-      this.currentRoundScore[user.name] = 0
+      const newUserPoint: UserPoint = {
+        name: user.name,
+        point: 0
+      }
+      this.currentRoundScore.push(newUserPoint) 
     }
 
     getRoundScore () {
-      // Set property for non react players
-      this.members.forEach(member => {
-        // if this.currentRoundScore[member.name], not work well
-        // eslint-disable-next-line no-prototype-builtins
-        if (!this.currentRoundScore.hasOwnProperty(member.name)) {
-          this.currentRoundScore[member.name] = 1
-        }
-      })
+      this._calcCurrentNonReactPlayer()
       return this.currentRoundScore
     }
 
@@ -65,15 +67,21 @@ export class Room {
     }
 
     endGame () {
-      // Calculate the points
+      // I can't use for in for loop in typescript
       
       // const leaderboardTable = {}
       // const playedRounds = Object.values(this.overallScore)
-      // console.log(playedRounds)
-      // this.members.forEach(member => {
-      //   playedRounds.forEach(function (selectedRound: {}){
-      //     console.log(selectedRound[member.name])
-      //   })
+      // playedRounds.forEach(round => {
+      //   
       // })
+    }
+    _calcCurrentNonReactPlayer(){
+      // It helps to create object for who not react this round
+      this.members.forEach(member => {
+        let foundedFlag = this.currentRoundScore.some(userP => {
+          return userP.name == member.name
+        })
+        if(!foundedFlag) this.currentRoundScore.push({name:member.name, point: 1})
+      })
     }
 }
