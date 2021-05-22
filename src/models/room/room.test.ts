@@ -38,8 +38,8 @@ describe('[room.ts]', () => {
     furkansRoom.react(altay)
     furkansRoom.react(furkan)
     expect(furkansRoom.getRoundScore()).toEqual([
-      { name: 'Altay Simsek', point: 0 },
-      { name: 'Furkan Portogal', point: 0 }
+      { name: 'Altay Simsek', point: 1 },
+      { name: 'Furkan Portogal', point: 1 }
     ])
   })
 
@@ -47,8 +47,8 @@ describe('[room.ts]', () => {
     furkansRoom.nextRound(altay)
     furkansRoom.react(furkan)
     expect(furkansRoom.getRoundScore()).toEqual([
-      { name: 'Furkan Portogal', point: 0 },
-      { name: 'Altay Simsek', point: 1 }
+      { name: 'Furkan Portogal', point: 1 },
+      { name: 'Altay Simsek', point: 0 }
     ])
   })
 
@@ -57,25 +57,30 @@ describe('[room.ts]', () => {
     expect(furkansRoom.nextRound(furkan)).toBe(false)
   })
 
-  it('check round after next rounds', () => {
+  it('check round after next round', () => {
     expect(furkansRoom.round).toEqual(3)
   })
 
   it('get the overall game score ', () => {
     expect(furkansRoom.getOverAllScore()).toEqual({
       1: [
-        { name: 'Altay Simsek', point: 0 },
-        { name: 'Furkan Portogal', point: 0 }
+        { name: 'Altay Simsek', point: 1 },
+        { name: 'Furkan Portogal', point: 1 }
       ],
       2: [
-        { name: 'Furkan Portogal', point: 0 },
-        { name: 'Altay Simsek', point: 1 }
+        { name: 'Furkan Portogal', point: 1 },
+        { name: 'Altay Simsek', point: 0 }
       ]
     })
   })
 
   it('end of the game ', () => {
-    console.log(furkansRoom.endGame())
-    expect(furkansRoom.getOverAllScore()).toEqual({ 1: { 'Altay Simsek': 0, 'Furkan Portogal': 0 }, 2: { 'Altay Simsek': 1, 'Furkan Portogal': 0 } })
+    expect(furkansRoom.endGame()).toEqual([['Furkan Portogal', 2], ['Altay Simsek', 1]])
+  })
+
+  it('close the room ', () => {
+    expect(furkansRoom.close(furkan)).toBe(false)
+    expect(furkansRoom.close(altay)).toBe(true)
+    expect(Room.allRooms()).toEqual([altaysRoom])
   })
 })
