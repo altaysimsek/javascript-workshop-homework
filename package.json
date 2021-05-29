@@ -8,7 +8,8 @@
         "build": "tsc",
         "test": "jest",
         "test:watch": "jest --coverage --watch",
-        "server:dev": "nodemon src/app/backend/index.ts"
+        "server:dev": "nodemon src/app/backend/index.ts",
+        "client:dev": "npm start --prefix ./src/app/frontend "
     },
     "author": "",
     "license": "ISC",
