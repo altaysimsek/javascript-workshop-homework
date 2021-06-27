@@ -1,0 +1,19 @@
+.joinbox{
+    background-color: rgb(71, 197, 255);
+    box-shadow: 4px 5px 0px 4px  rgb(0, 94, 148);
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    display: flex;
+    
+    &-left{
+        width: 70%;
+        padding:10px;
+        h2{
+            margin-bottom: 10px;
+        }
+    }
+    &-right{
+        width: 30%;
+    }
+}
