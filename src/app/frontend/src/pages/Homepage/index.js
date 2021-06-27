@@ -1,9 +1,11 @@
 import React from 'react';
+import { JoinBox } from '../../components'
 
 function Homepage() {
+    
     return (
-        <div className='red'>
-            <p>merhaba</p>
+        <div className='container-fluid'>
+            <JoinBox/>
         </div>
     );
 }
