@@ -1,27 +1,33 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RoomCard } from '../'
-import socketIOClient from 'socket.io-client';
+import socket from '../../socket';
+
 
 const JoinBox = () => {
-    const socket = socketIOClient('http://localhost:8000', { transports: ['websocket'] });
+    
+    const [rooms, setRooms] = useState([])
+    
+    
     useEffect(() => {
         
         socket.on('rooms', (data) => {
-            console.log(data)
+            setRooms(data)
         })
+
+        return () => socket.disconnect();
         
     }, []);
-
+    
     const createRoomClick = (e) => {
-        socket.emit('newRoom')
+        const retVal = prompt('Enter your name : ', 'your name here');
+        socket.emit('newRoom', retVal)
     }
 
     return (
         <div className='joinbox'>
                 <div className='joinbox-left'>
                     <h2>Rooms</h2>
-                    <RoomCard/>
-                    <RoomCard/>
+                    {rooms.map((room, idx) => <RoomCard key={idx} payload={room}/>)}
                 </div>
                 <div className='joinbox-right'>
                     <h2>Settings</h2>

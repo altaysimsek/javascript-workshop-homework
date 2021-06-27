@@ -1,11 +1,11 @@
 import React from 'react'
 
 
-const RoomCard = () => {
+const RoomCard = ({payload}) => {
     return (
         <div className='room-card'>
-            <span>Oda #1</span>
-            <span>1/2</span>
+            <span>{payload.roomName}</span>
+            <span>{payload.members.length}/2</span>
         </div>
     );
 }

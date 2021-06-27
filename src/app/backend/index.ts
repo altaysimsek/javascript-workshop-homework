@@ -19,14 +19,14 @@ app.get('/', (req: any, res: any) => {
 })
 
 io.on('connection', (socket: any) => {
-  console.log('a user connected')
+  console.log('a user connected', socket.id)
 
   socket.emit('rooms', Room.rooms)
 
   socket.on('newRoom', (roomName: any) => {
     const newRoom = new Room(roomName || socket.id)
     console.log(`Created room is : ${newRoom}, from ${socket.id}`)
-    socket.emit('rooms', Room.rooms)
+    io.emit('rooms', Room.rooms)
   })
 
   socket.on('disconnect', () => {
