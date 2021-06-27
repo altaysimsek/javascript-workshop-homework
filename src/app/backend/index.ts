@@ -8,7 +8,9 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
-const port = process.env.PORT || 3000
+const { Room } = require('../../models/room/room')
+
+const port = process.env.PORT || 8000
 
 app.use(cors())
 
@@ -18,8 +20,17 @@ app.get('/', (req: any, res: any) => {
 
 io.on('connection', (socket: any) => {
   console.log('a user connected')
+
+  socket.emit('rooms', Room.rooms)
+
+  socket.on('newRoom', (roomName: any) => {
+    const newRoom = new Room(roomName || socket.id)
+    console.log(`Created room is : ${newRoom}, from ${socket.id}`)
+    socket.emit('rooms', Room.rooms)
+  })
+
   socket.on('disconnect', () => {
-    console.log('user disconnected')
+    console.log('user disconnected', socket.id)
   })
 })
 
