@@ -1,4 +1,3 @@
-const path = require('path')
 const http = require('http')
 const cors = require('cors')
 const express = require('express')
@@ -13,10 +12,6 @@ const { Room } = require('../../models/room/room')
 const port = process.env.PORT || 8000
 
 app.use(cors())
-
-app.get('/', (req: any, res: any) => {
-  res.sendFile(path.join(__dirname, '/index.html'))
-})
 
 io.on('connection', (socket: any) => {
   console.log('a user connected', socket.id)
