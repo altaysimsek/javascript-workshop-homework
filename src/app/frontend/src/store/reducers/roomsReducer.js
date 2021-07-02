@@ -1,9 +1,16 @@
-const roomsReducer = (state = 0, action) => {
+const initializeState = {
+    selectedRoom: null,
+}
+
+const roomsReducer = (state = initializeState , action) => {
     switch(action.type){
-        case 'HELLO':
-            return state + 1
+        case 'SELECT_ROOM':
+            return {
+                ...state,
+                selectedRoom: action.payload
+            }
         default:
-            return state
+            return state;
     }
 }
 

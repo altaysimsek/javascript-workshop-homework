@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { RoomCard } from '../'
 import socket from '../../socket';
 
+//Redux
+import { useSelector } from 'react-redux'
+
 
 const JoinBox = () => {
+    const roomie = useSelector(state => state.rooms)
     
     const [rooms, setRooms] = useState([])
     
-    
     useEffect(() => {
-        
         socket.on('rooms', (data) => {
             setRooms(data)
         })
-
         return () => socket.disconnect();
-        
     }, []);
     
     const createRoomClick = (e) => {
@@ -35,7 +35,7 @@ const JoinBox = () => {
                     <input placeholder="Type your username"></input>
                     <hr/>
                     <div>
-                        <button disabled>Join Room</button>
+                        <button disabled={!roomie.selectedRoom}>Join Room</button>
                         <button onClick={createRoomClick}>Create Room</button>
                     </div>
                 </div>
