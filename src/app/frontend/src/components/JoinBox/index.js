@@ -15,12 +15,18 @@ const JoinBox = () => {
         socket.on('rooms', (data) => {
             setRooms(data)
         })
+        socket.on('message', (data) => {
+            console.log(data)
+        });
         return () => socket.disconnect();
     }, []);
     
-    const createRoomClick = (e) => {
-        const retVal = prompt('Enter your name : ', 'your name here');
+    const handleCreateRoomClick = (e) => {
+        const retVal = prompt('Enter your room name : ', 'Room name here!');
         socket.emit('newRoom', retVal)
+    }
+    const handleJoinRoomClick = (e) => {
+        socket.emit('joinRoom', roomie.selectedRoom)
     }
 
     return (
@@ -35,8 +41,8 @@ const JoinBox = () => {
                     <input placeholder="Type your username"></input>
                     <hr/>
                     <div>
-                        <button disabled={!roomie.selectedRoom}>Join Room</button>
-                        <button onClick={createRoomClick}>Create Room</button>
+                        <button disabled={!roomie.selectedRoom} onClick={handleJoinRoomClick}>Join Room</button>
+                        <button onClick={handleCreateRoomClick}>Create Room</button>
                     </div>
                 </div>
             </div>
