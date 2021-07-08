@@ -5337,10 +5337,10 @@
     "flatted" "^3.1.0"
     "rimraf" "^3.0.2"
 
-"flatted@^3.1.0":
-  "integrity" "sha512-zAoAQiudy+r5SvnSw3KJy5os/oRJYHzrzja/tBDqrZtNhUw8bt6y8OBzMWcjWr+8liV8Eb6yOhw8WZ7VFZ5ZzA=="
-  "resolved" "https://registry.npmjs.org/flatted/-/flatted-3.1.1.tgz"
-  "version" "3.1.1"
+"flatted@^3.1.0", "flatted@^3.2.0":
+  "integrity" "sha512-XprP7lDrVT+kE2c2YlfiV+IfS9zxukiIOvNamPNsImNhXadSsQEbosItdL9bUQlCZXR13SvPk20BjWSWLA7m4A=="
+  "resolved" "https://registry.npmjs.org/flatted/-/flatted-3.2.0.tgz"
+  "version" "3.2.0"
 
 "flatten@^1.0.2":
   "integrity" "sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg=="

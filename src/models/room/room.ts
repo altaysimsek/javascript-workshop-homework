@@ -19,7 +19,7 @@ export class Room {
       Room.rooms.push(this)
     }
 
-    join (user: User) {
+    join (user: any) {
       this.members.push(user)
       user.room = this
       return this

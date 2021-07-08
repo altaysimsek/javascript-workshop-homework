@@ -13,7 +13,8 @@ const JoinBox = () => {
     
     useEffect(() => {
         socket.on('rooms', (data) => {
-            setRooms(data)
+            setRooms(JSON.parse(data))
+            console.log(JSON.parse(data));
         })
         socket.on('message', (data) => {
             console.log(data)
@@ -37,10 +38,7 @@ const JoinBox = () => {
                 </div>
                 <div className='joinbox-right'>
                     <h2>Settings</h2>
-                    <hr/>
-                    <input placeholder="Type your username"></input>
-                    <hr/>
-                    <div>
+                    <div className="button-box">
                         <button disabled={!roomie.selectedRoom} onClick={handleJoinRoomClick}>Join Room</button>
                         <button onClick={handleCreateRoomClick}>Create Room</button>
                     </div>

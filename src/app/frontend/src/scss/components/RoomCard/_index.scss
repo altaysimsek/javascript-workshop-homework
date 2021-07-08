@@ -10,8 +10,15 @@
     justify-content: space-between;
     align-items: center;
     transition: all ease .18s;
+    border: 3px solid transparent;
+
     &:hover{
         color: rgb(34, 34, 34);
         transform: scale(1.01);
+        cursor: pointer;
+    }
+
+    &.active{
+        border: 3px solid rgb(0, 137, 216);
     }
 }

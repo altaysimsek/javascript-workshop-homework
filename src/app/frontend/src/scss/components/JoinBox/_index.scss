@@ -15,5 +15,24 @@
     }
     &-right{
         width: 30%;
+        
+        .button-box{
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-start;
+            button{
+                border: none;
+                border-radius: 8px;
+                padding: .5rem 1rem;
+                background-color: white;
+                font-weight: 700;
+                margin-right: 10px;
+                &:hover{
+                    cursor:pointer;
+                    background-color: rgb(240, 240, 240);
+                }
+            }
+        }
+        
     }
 }
