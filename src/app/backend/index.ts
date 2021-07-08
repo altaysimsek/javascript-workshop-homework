@@ -24,8 +24,7 @@ io.on('connection', (socket: any) => {
   socket.on('joinRoom', (roomName: any) => {
     const selectedRoom = Room.getRoom(roomName)
     selectedRoom.join(socketUser)
-    // console.log('Selected room is: ', selectedRoom)
-    console.log(toJSON(Room.allRooms()))
+    console.log('Selected room is: ', selectedRoom)
     io.emit('rooms', toJSON(Room.allRooms()))
   })
 

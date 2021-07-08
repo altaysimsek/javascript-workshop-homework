@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { RoomCard } from '../'
 import socket from '../../socket';
+import { fromJSON } from 'flatted'
 
 //Redux
 import { useSelector } from 'react-redux'
@@ -13,12 +14,9 @@ const JoinBox = () => {
     
     useEffect(() => {
         socket.on('rooms', (data) => {
-            setRooms(JSON.parse(data))
-            console.log(JSON.parse(data));
+            setRooms(fromJSON(data))
         })
-        socket.on('message', (data) => {
-            console.log(data)
-        });
+        
         return () => socket.disconnect();
     }, []);
     
